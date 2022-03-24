@@ -1,6 +1,5 @@
 <script>
   export let title = "no title given"
-  title = addTypo(title)
   let chars = []
 
   function next(i) {
