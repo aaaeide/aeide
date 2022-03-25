@@ -1,8 +1,8 @@
-<script>
+<script lang="ts">
   export let title = "no title given"
-  let chars = []
+  let chars: string[] = []
 
-  function next(i) {
+  function next(i: number): void {
     chars = [...chars, title[i]]
 
     if (i<title.length-1) {
@@ -13,7 +13,7 @@
     }
   }
 
-  function prev(i) {
+  function prev(i: number): void {
     chars.pop()
     chars = chars
 
@@ -26,9 +26,9 @@
     }
   }
 
-  function addTypo(txt) {
+  function addTypo(txt: string): string {
     if (Math.random() > 0) {
-      let randIdx = (len) => Math.floor(Math.random() * len)
+      let randIdx = (len: number) => Math.floor(Math.random() * len)
       let i = randIdx(txt.length-1)
 
       txt = txt.slice(0, i) + txt[i+1] 
@@ -53,7 +53,7 @@
 
   h1 {
     font-family: monospace;
-    border-right: .15em solid orange; /* The typwriter cursor */
+    border-right: .15em solid orange; /* The typewriter cursor */
     white-space: nowrap; /* Keeps the content on a single line */
     width: min-content;
     animation: 
