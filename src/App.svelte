@@ -3,16 +3,20 @@
 </script>
 
 <main>
-  <TypoHeader title="Andreas Aaberge Eide"/>
+  <TypoHeader title="Andreas Aaberge Eide" />
 
   <p>
-    Hei og velkommen til min (Andreas) sin hjemmeside. Her kommer du sikkert til å kunne finne mer info om meg en gang i fremtiden, men inntil videre er denne siden under konstruksjon.
+    Hei og velkommen til min (Andreas) sin hjemmeside. Her kommer du sikkert til
+    å kunne finne mer info om meg en gang i fremtiden, men inntil videre er
+    denne siden under konstruksjon.
   </p>
 
   <p>
-    Men altså herregud, enn så lenge er det jo såklart bare å sjekke ut meg og noen av prosjektene mine på
+    Men altså herregud, enn så lenge er det jo såklart bare å sjekke ut meg og
+    noen av prosjektene mine på
   </p>
 
+  <!-- prettier-ignore -->
   <ul>
     <li><a href="https://github.com/aaaeide/">Github</a></li>
     <li><a href="https://www.linkedin.com/in/andreas-aaberge-eide-513078151/">Linkedin</a></li>
@@ -23,8 +27,8 @@
 
 <style>
   :root {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-      Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+      Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
     background-color: black;
     color: white;
   }
