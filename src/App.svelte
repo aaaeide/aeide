@@ -12,7 +12,7 @@
   <hr />
 
   <p>
-    For øyeblikket (vår 2023) skriver jeg en masteroppgave i Datateknologi med tittelen "Matroids and Fair Allocation". Ekstremt spesielt interesserte folk kan sjekke den ut <a href="https://github.com/aaaeide/MASTER_2023">HER</a>. I den anledning lager jeg et Julia-bibliotek for å tilfeldig generere og interagere med disse matroidene, det finnes <a href="https://github.com/aaaeide/Matroids.jl">HER</a>.
+    For øyeblikket (vår 2023) skriver jeg en masteroppgave i Datateknologi med tittelen "Matroids and Fair Allocation". Ekstremt spesielt interesserte folk kan sjekke den ut <a href="https://github.com/aaaeide/MASTER_2023/blob/main/article.pdf">HER</a>. I den anledning lager jeg et Julia-bibliotek for å tilfeldig generere og interagere med disse matroidene, det finnes <a href="https://github.com/aaaeide/Matroids.jl">HER</a>. Det hele er veldig WIP. Ikke se for nøye.
   </p>
 
   <p>
