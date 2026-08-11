@@ -1,10 +1,10 @@
 # aeide.no
 
-Gratulerer du har rotet deg inn i kildekoden til nettsida mi, aeide.no. Nettsida er en enkel `index.html` med innholdet i `index.md` (markdown), rendret i nettleseren med en liten, dependency-fri script. Ingen build-steg, ingen dependencies. Hostet gratis på GitHub Pages.
+Gratulerer du har rotet deg inn i kildekoden til nettsida mi, aeide.no. Nettsida er en enkel `index.html` med innholdet spredt utover markdown-filer (`om.md`, `naa.md`, `prosjekter.md`, `radio.md`) — hver fil rendres i sin egen oransje boks nedover siden, med en liten, dependency-fri script. Ingen build-steg, ingen dependencies. Hostet gratis på GitHub Pages.
 
 ## Oppdatere innholdet
 
-Skriv tekst i `index.md` og push — siden oppdateres automatisk. Støttet markdown: paragrafer, `#`/`##`/`###` overskrifter, `---` horisontal linje, `**fet**`, `*kursiv*`, `` `kode` `` og `[link](url)`.
+Skriv tekst i den aktuelle `.md`-filen og push — siden oppdateres automatisk. Hver fil vises som en egen boks. Nye bokser = nye filer: legg filen til i `files`-lista i `index.html`. Støttet markdown: paragrafer, `#`/`##`/`###` overskrifter, `---` horisontal linje, `**fet**`, `*kursiv*`, `` `kode` `` og `[link](url)`.
 
 ## Sette opp GitHub Pages
 
