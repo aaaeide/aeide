@@ -1,13 +1,127 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="no">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" href="/face_with_cowboy_hat.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Andreas' lille hjørne av verdensveven</title>
+    <style>
+      :root {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+          Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+        background-color: black;
+        color: white;
+      }
+
+      main {
+        border: 1px solid orange;
+        padding: 1em;
+        max-width: 400px;
+      }
+
+      a {
+        color: orange;
+      }
+
+      hr {
+        border: none;
+        border-top: 1px solid orange;
+      }
+
+      h1 {
+        font-family: monospace;
+        border-right: 0.15em solid orange;
+        white-space: nowrap;
+        width: min-content;
+        animation: blink-caret 1s step-end infinite;
+      }
+
+      h1::before {
+        content: " ";
+        display: inline-block;
+        width: 0em;
+      }
+
+      @keyframes blink-caret {
+        from,
+        to {
+          border-color: transparent;
+        }
+        50% {
+          border-color: orange;
+        }
+      }
+    </style>
   </head>
   <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.ts"></script>
+    <main>
+      <h1 id="typo"></h1>
+
+      <p>
+        Hei og velkommen til min (Andreas sin) hjemmeside. På denne sporadisk oppdaterte nettsiden kan du finne informasjon om hva jeg holder og har holdt på med. Hvis du vurderer å ansette meg til en jobb jeg har søkt på vil jeg gjerne også henvise til min <a href="https://github.com/aaaeide/">Github</a> og <a href="https://www.linkedin.com/in/andreas-aaberge-eide-513078151/">Linkedin</a> -- på sistnevnte har jeg referanser! Det liker dere.
+      </p>
+
+      <hr />
+
+      <p>
+        For øyeblikket (vår 2023) skriver jeg en masteroppgave i Datateknologi med tittelen "Matroids and Fair Allocation". Ekstremt spesielt interesserte folk kan sjekke den ut <a href="https://github.com/aaaeide/MASTER_2023/blob/main/article.pdf">HER</a>. I den anledning lager jeg et Julia-bibliotek for å tilfeldig generere og interagere med disse matroidene, det finnes <a href="https://github.com/aaaeide/Matroids.jl">HER</a>. Det hele er veldig WIP. Ikke se for nøye.
+      </p>
+
+      <p>
+        Av tidligere prosjekter har jeg en startup under beltet ved navn Mestr. Den er delvis lagt på is for tiden, men er fortsatt et prosjekt jeg er veldig stolt av. Sjekk det ut <a href="https://mestr.no/">HER</a>! Ikke let for nøye etter bugs.
+      </p>
+
+      <p>
+        Jeg har også laget en del radio og podkast opp igjennom. Utelukkende tull og fjas. For det meste studentradioprogrammet <a href="https://open.spotify.com/show/0q8VmcK5Zy76bqJVbbSda8?si=c4be9101f7ff48b3">Skrøneriet på Radio Revolt</a>, men en stakket stund fikk jeg også betalt for å lage <a href="https://radio.nrk.no/serie/jon-og-andreas-show">Jon og Andreas Show på NRK P3</a>.
+      </p>
+    </main>
+
+    <script>
+      let title = "Andreas Aaberge Eide";
+      const el = document.getElementById("typo");
+      let chars = [];
+
+      function next(i) {
+        chars = [...chars, title[i]];
+        el.textContent = chars.join("");
+
+        if (i < title.length - 1) {
+          let ms = (title[i] == " " ? 1000 : 200) * (0.5 + Math.random());
+          setTimeout(() => next(i + 1), ms);
+        } else {
+          setTimeout(() => prev(i), 3000);
+        }
+      }
+
+      function prev(i) {
+        chars.pop();
+        el.textContent = chars.join("");
+
+        if (i > 0) {
+          let ms = 125 + 50 * -Math.random();
+          setTimeout(() => prev(i - 1), ms);
+        } else {
+          title = addTypo(title);
+          setTimeout(() => next(i), 1500);
+        }
+      }
+
+      function addTypo(txt) {
+        let randIdx = (len) => Math.floor(Math.random() * len);
+        let i = randIdx(txt.length - 1);
+
+        txt = txt.slice(0, i) + txt[i + 1] + txt[i] + txt.slice(i + 2);
+
+        txt = txt
+          .split(" ")
+          .map((wd) => wd.toLowerCase())
+          .map((wd) => wd.charAt(0).toUpperCase() + wd.slice(1))
+          .join(" ");
+
+        return txt;
+      }
+
+      next(0);
+    </script>
   </body>
 </html>
