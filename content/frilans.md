@@ -1,0 +1,1 @@
+Ved siden av mitt daglige virke som programvareutvikler er jeg «IT-ansvarlig» hos [Oslo Fringe](oslofringe.com). Her har jeg utviklet nettside og app. Jeg er åpen for flere frilansoppdrag! Ta kontakt ved interesse.

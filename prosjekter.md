@@ -1,1 +1,0 @@
-Av tidligere prosjekter har jeg en startup under beltet ved navn Mestr. Den er delvis lagt på is for tiden, men er fortsatt et prosjekt jeg er veldig stolt av. Sjekk det ut [HER](https://mestr.no/)! Ikke let for nøye etter bugs.

@@ -1,0 +1,6 @@
+<% writings.each do |w| %>
+  <section class="box writing">
+    <%= render_writing_header(w) %>
+    <div><%= w[:body] %></div>
+  </section>
+<% end %>

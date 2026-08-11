@@ -1,0 +1,7 @@
+<article class="writing">
+  <header class="writing-header">
+    <h1><%= esc(page[:title]) %></h1>
+    <p class="writing-meta"><%= writing_meta(page) %><% if page[:date] %> · <time datetime="<%= esc(page[:date]) %>"><%= esc(page[:date]) %></time><% end %></p>
+  </header>
+  <div class="writing-body"><%= page[:body] %></div>
+</article>

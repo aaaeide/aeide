@@ -1,1 +1,0 @@
-Jeg har også laget en del radio og podkast opp igjennom. Utelukkende tull og fjas. For det meste studentradioprogrammet [Skrøneriet på Radio Revolt](https://open.spotify.com/show/0q8VmcK5Zy76bqJVbbSda8?si=c4be9101f7ff48b3), men en stakket stund fikk jeg også betalt for å lage [Jon og Andreas Show på NRK P3](https://radio.nrk.no/serie/jon-og-andreas-show).
