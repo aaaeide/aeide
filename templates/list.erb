@@ -1,5 +1,5 @@
 <h2 class="feed-title"><%= esc(heading) %></h2>
-<% writings.each do |w| %>
+<% items.each do |w| %>
   <section class="box writing">
     <p class="file-path"><a href="<%= esc(w[:url]) %>">~/<%= esc(w[:file]) %></a></p>
     <%= render_writing_header(w) %>

@@ -33,6 +33,8 @@ site = {
   title: "ANDREAS HJEMMESIDE",
   nav: [
     { title: "hjem", url: "/" },
+    { title: "filmer", url: "/filmer/" },
+    { title: "bøker", url: "/boker/" },
     { title: "frilans", url: "/frilans/" },
     { title: "foto", url: "https://foto.aeide.no", external: true },
     { title: "github", url: "https://github.com/aaaeide/", external: true },
@@ -81,11 +83,17 @@ pages = Dir.glob(File.join(CONTENT, "**", "*.md")).map do |path|
   file = path.delete_prefix("#{CONTENT}/")
   slug = file.sub(/\.md\z/, "")
   front, body = parse_front_matter(File.read(path))
-  writing = file.start_with?("writing/")
+  kind = if file.start_with?("filmer/")
+           :movie
+         elsif file.start_with?("boker/")
+           :book
+         else
+           :page
+         end
   page = {
     file: file,
     slug: slug,
-    writing: writing,
+    kind: kind,
     url: slug == "hjem" ? "/" : "/#{slug}/",
     title: front["title"] || slug,
     type: front["type"],
@@ -96,24 +104,53 @@ pages = Dir.glob(File.join(CONTENT, "**", "*.md")).map do |path|
     link: front["link"],
     body: markdown.render(body)
   }
-  template = if writing
-               front["type"] == "movie-review" ? "movie_review.erb" : "book_review.erb"
+  template = case kind
+             when :movie then "movie_review.erb"
+             when :book then "book_review.erb"
+             else "page.erb"
              end
-  page[:html] = writing ? render.call(template, page: page) : page[:body]
+  page[:html] = render.call(template, page: page)
   page
 end
 
-writings = pages.select { |page| page[:writing] }.sort_by { |page| page[:date] }.reverse
-others = pages.reject { |page| page[:writing] }
+movies = pages.select { |page| page[:kind] == :movie }.sort_by { |page| page[:date].to_s }.reverse
+books = pages.select { |page| page[:kind] == :book }.sort_by { |page| page[:date].to_s }.reverse
+others = pages.reject do |page|
+  page[:kind] == :movie || page[:kind] == :book || %w[filmer.md boker.md].include?(page[:file])
+end
 home = others.find { |page| page[:slug] == "hjem" }
 
-feed_html = render.call("feed.erb", writings: writings)
+read_intro = lambda do |name|
+  path = File.join(CONTENT, name)
+  return "" unless File.exist?(path)
+
+  _front, body = parse_front_matter(File.read(path))
+  slug = name.sub(/\.md\z/, "")
+  page = { file: name, title: name, url: "/#{slug}/", body: markdown.render(body) }
+  render.call("page.erb", page: page)
+end
+
+filmer_page = {
+  slug: "filmer",
+  url: "/filmer/",
+  title: "filmer",
+  html: "#{read_intro.call("filmer.md")}<br />#{render.call("list.erb", heading: "filmer", items: movies)}"
+}
+boker_page = {
+  slug: "boker",
+  url: "/boker/",
+  title: "bøker",
+  html: "#{read_intro.call("boker.md")}<br />#{render.call("list.erb", heading: "bøker", items: books)}"
+}
+
+recent = (movies + books).sort_by { |page| page[:date].to_s }.reverse.first(20)
+feed_html = render.call("feed.erb", writings: recent, heading: "siste nytt")
 home[:html] = "#{home[:html]}<br />#{feed_html}"
 
 FileUtils.rm_rf(DIST)
 FileUtils.mkdir_p(DIST)
 
-(others + writings).each do |page|
+(others + [filmer_page, boker_page] + movies + books).each do |page|
   output = page[:slug] == "hjem" ? "index.html" : File.join(page[:slug], "index.html")
   dest = File.join(DIST, output)
   FileUtils.mkdir_p(File.dirname(dest))
@@ -133,4 +170,4 @@ Dir.glob(File.join(CONTENT, "**/*")).each do |path|
   FileUtils.cp(path, dest)
 end
 
-puts "Built #{others.length} pages + #{writings.length} writings into dist/"
+puts "Built #{others.length} pages + #{movies.length} movies + #{books.length} books into dist/"

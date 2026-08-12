@@ -1,4 +1,5 @@
 <article class="writing">
+  <p class="file-path"><a href="<%= esc(page[:url]) %>">~/<%= esc(page[:file]) %></a></p>
   <header class="writing-header">
     <h1><%= esc(page[:title]) %></h1>
     <p class="writing-meta"><%= writing_meta(page) %><% if page[:date] %> · <time datetime="<%= esc(page[:date]) %>"><%= esc(page[:date]) %></time><% end %></p>
