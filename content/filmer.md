@@ -1,1 +1,1 @@
-Det er gøy med filmer men man gjør seg jo opp noen tanker
+Det er artig med film men man gjør seg jo opp noen tanker

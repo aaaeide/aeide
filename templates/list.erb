@@ -2,7 +2,14 @@
 <% items.each do |w| %>
   <section class="box writing">
     <p class="file-path"><a href="<%= esc(w[:url]) %>">~/<%= esc(w[:file]) %></a></p>
-    <%= render_writing_header(w) %>
-    <div><%= w[:body] %></div>
+    <div class="post-row">
+      <% if w[:thumb_url] %>
+        <a href="<%= esc(w[:url]) %>" class="thumb-col"><img class="thumb" src="<%= esc(w[:thumb_url]) %>" alt="<%= esc(w[:title]) %>" loading="lazy" decoding="async" /></a>
+      <% end %>
+      <div class="post-main">
+        <%= render_writing_header(w) %>
+        <div><%= w[:body] %></div>
+      </div>
+    </div>
   </section>
 <% end %>

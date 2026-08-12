@@ -4,5 +4,8 @@
     <h1><%= esc(page[:title]) %></h1>
     <p class="writing-meta"><%= writing_meta(page) %><% if page[:date] %> · <time datetime="<%= esc(page[:date]) %>"><%= esc(page[:date]) %></time><% end %></p>
   </header>
+  <% if page[:image_url] %>
+    <img class="post-image" src="<%= esc(page[:image_url]) %>" alt="<%= esc(page[:title]) %>" loading="lazy" decoding="async" />
+  <% end %>
   <div class="writing-body"><%= page[:body] %></div>
 </article>

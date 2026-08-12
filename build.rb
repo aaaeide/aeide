@@ -90,6 +90,10 @@ pages = Dir.glob(File.join(CONTENT, "**", "*.md")).map do |path|
          else
            :page
          end
+  image = front["image"]
+  dir = File.dirname(file)
+  dir = "" if dir == "."
+  base = image && File.basename(image, ".*")
   page = {
     file: file,
     slug: slug,
@@ -102,6 +106,11 @@ pages = Dir.glob(File.join(CONTENT, "**", "*.md")).map do |path|
     date: front["date"],
     rating: front["rating"],
     link: front["link"],
+    image: image,
+    image_url: image && (dir.empty? ? "/#{image}" : "/#{dir}/#{image}"),
+    thumb_url: image && (dir.empty? ? "/#{base}-thumb.jpg" : "/#{dir}/#{base}-thumb.jpg"),
+    image_src: image && File.join(CONTENT, dir, image),
+    thumb_dest: image && File.join(DIST, dir, "#{base}-thumb.jpg"),
     body: markdown.render(body)
   }
   template = case kind
@@ -168,6 +177,26 @@ Dir.glob(File.join(CONTENT, "**/*")).each do |path|
   dest = File.join(DIST, rel)
   FileUtils.mkdir_p(File.dirname(dest))
   FileUtils.cp(path, dest)
+end
+
+THUMB_CACHE = File.join(ROOT, ".thumb-cache")
+THUMB_VERSION = "320q70"
+FileUtils.mkdir_p(THUMB_CACHE)
+im = ["magick", "convert"].find { |c| !`which #{c} 2>/dev/null`.strip.empty? }
+if im
+  pages.each do |p|
+    next unless p[:image_src] && File.exist?(p[:image_src])
+
+    key = p[:image_src].delete_prefix("#{ROOT}/").gsub("/", "_")
+    cached = File.join(THUMB_CACHE, "#{key}.#{THUMB_VERSION}.jpg")
+    unless File.exist?(cached) && File.mtime(cached) >= File.mtime(p[:image_src])
+      system(im, p[:image_src], "-resize", "320x", "-quality", "70", cached)
+    end
+    FileUtils.mkdir_p(File.dirname(p[:thumb_dest]))
+    FileUtils.cp(cached, p[:thumb_dest])
+  end
+else
+  warn "warning: ImageMagick not found — skipping thumbnail generation"
 end
 
 puts "Built #{others.length} pages + #{movies.length} movies + #{books.length} books into dist/"

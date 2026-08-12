@@ -22,6 +22,10 @@
         color: orange;
       }
 
+      time {
+        white-space: nowrap;
+      }
+
       .navbar {
         border-bottom: 1px dashed orange;
         padding: 0.75em 1em;
@@ -116,6 +120,52 @@
         border-bottom: 1px dashed orange;
         padding-bottom: 0.5em;
         margin: 0 0 1em;
+      }
+
+      .post-image {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin: 0 0 1em;
+        border-radius: 4px;
+      }
+
+      .post-row {
+        display: flex;
+        align-items: flex-start;
+        gap: 1.25em;
+      }
+
+      .thumb-col {
+        flex: 0 0 auto;
+      }
+
+      .thumb-col .thumb {
+        width: 180px;
+        height: auto;
+        object-fit: cover;
+        border-radius: 4px;
+        display: block;
+      }
+
+      .post-row .post-main {
+        flex: 1 1 0;
+        min-width: 0;
+      }
+
+      .writing-body img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin: 0.5em 0;
+        border-radius: 4px;
+      }
+
+      .thumb {
+        max-width: 320px;
+        width: 100%;
+        border-radius: 4px;
+        margin: 0 0 0.75em;
       }
 
       .file-path {

@@ -1,4 +1,7 @@
 <section class="box writing">
   <p class="file-path"><a href="<%= esc(page[:url]) %>">~/<%= esc(page[:file]) %></a></p>
+  <% if page[:image_url] %>
+    <img class="post-image" src="<%= esc(page[:image_url]) %>" alt="<%= esc(page[:title]) %>" loading="lazy" decoding="async" />
+  <% end %>
   <div><%= page[:body] %></div>
 </section>
