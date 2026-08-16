@@ -94,7 +94,7 @@ pages = Dir.glob(File.join(CONTENT, "**", "*.md")).map do |path|
   dir = File.dirname(file)
   dir = "" if dir == "."
   base = image && File.basename(image, ".*")
-  page = {
+  {
     file: file,
     slug: slug,
     kind: kind,
@@ -111,16 +111,25 @@ pages = Dir.glob(File.join(CONTENT, "**", "*.md")).map do |path|
     thumb_url: image && (dir.empty? ? "/#{base}-thumb.jpg" : "/#{dir}/#{base}-thumb.jpg"),
     image_src: image && File.join(CONTENT, dir, image),
     thumb_dest: image && File.join(DIST, dir, "#{base}-thumb.jpg"),
+    template: case kind
+              when :movie then "movie_review.erb"
+              when :book then "book_review.erb"
+              else "page.erb"
+              end,
     body: markdown.render(body)
   }
-  template = case kind
-             when :movie then "movie_review.erb"
-             when :book then "book_review.erb"
-             else "page.erb"
-             end
-  page[:html] = render.call(template, page: page)
-  page
 end
+
+# number books and movies by review order (oldest review = 1), prepend to title
+%i[book movie].each do |k|
+  pages.select { |p| p[:kind] == k }.sort_by { |p| p[:date].to_s }.each_with_index do |p, i|
+    p[:number] = i + 1
+    p[:title] = "#{i + 1}. #{p[:title]}"
+  end
+end
+
+# render each page now that titles are finalized
+pages.each { |p| p[:html] = render.call(p[:template], page: p) }
 
 movies = pages.select { |page| page[:kind] == :movie }.sort_by { |page| page[:date].to_s }.reverse
 books = pages.select { |page| page[:kind] == :book }.sort_by { |page| page[:date].to_s }.reverse
