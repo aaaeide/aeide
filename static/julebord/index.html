@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+
+<html lang="no">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="#263c2b" name="theme-color"/>
+<meta content="Julebord. Vi blir 10 stykker, inkludert Terje og Daniel. Dresskode: pent med slipstvang." name="description"/>
+<title>Julebord</title>
+<style>
+    /* Inspirert av internett før alle nettsider ble like.
+       Ingen rammeverk, eksterne skrifter eller byggetrinn. */
+    :root { --vin:#7e1d21; --gran:#284c31; --papir:#fff9e7; --blekk:#241f17; --gull:#b49145; }
+    * {box-sizing:border-box}
+    html {scroll-behavior:smooth}
+    body {margin:0; padding:20px 8px 35px; color:var(--blekk); background:#28422e url('duk.gif') repeat; font:17px/1.35 Georgia,'Times New Roman',serif}
+    a {color:#001fa3; text-decoration:underline}
+    a:visited {color:#561e78}
+    a:hover {color:#b01924;background:#fff1ae}
+    a:focus-visible, summary:focus-visible, button:focus-visible {outline:3px dashed #b01924;outline-offset:3px}
+    img {max-width:100%;height:auto}
+    .page {max-width:870px;margin:0 auto;background:var(--papir);border:5px ridge #ddc890;box-shadow:0 0 0 2px #402e24}
+    .tiny-bar {background:#16331e;color:#fff7d9;text-align:center;padding:5px 10px;font:12px/1.4 'Times New Roman',serif;letter-spacing:1.5px}
+    .tiny-bar span {color:#ffbd66}
+    .masthead {text-align:center;padding:16px 16px 8px;background:#fffbea;position:relative;border-bottom:1px solid var(--gull)}
+    .holiday-stars {display:flex;align-items:center;justify-content:center;gap:8px;margin:0 auto 6px;font-size:17px;color:#a6212a}
+    .holiday-stars img {width:27px;height:27px;image-rendering:pixelated}
+    .eyebrow {font:13px/1.15 'Times New Roman',serif;letter-spacing:3px;color:#3e6035}
+    h1 {font:bold clamp(48px,10vw,98px)/.97 Georgia,'Times New Roman',serif;color:var(--vin);letter-spacing:-5px;margin:7px 0 3px;text-shadow:1px 1px 0 #cfb78c}
+    h1 span {display:inline-block;font-size:.6em;letter-spacing:-2px;white-space:nowrap;vertical-align:baseline;color:#48642d}
+    .submast {font:bold 14px/1.4 'Times New Roman',serif;letter-spacing:2px;color:#6e4b21;margin:13px 0 2px}
+    .rule {display:flex;align-items:center;justify-content:center;gap:12px;color:#a2232a;margin:9px auto 2px;max-width:500px}
+    .rule::before,.rule::after {content:'';height:1px;background:#9b8a64;flex:1}
+    .navigation {display:flex;flex-wrap:wrap;align-items:center;justify-content:center;text-align:center;gap:2px 0;padding:9px 12px;background:#eae0bc;border-top:2px solid #ad9b68;border-bottom:3px double #84713f;font:16px/1.4 'Times New Roman',serif}
+    .navigation a {display:inline-block;padding:1px 12px;font-weight:bold;white-space:nowrap}
+    .navigation a+a {border-left:1px solid #746c54}
+    .announcement {background:var(--vin);color:#fff9de;text-align:center;padding:7px 11px;font:13px/1.35 'Times New Roman',serif;letter-spacing:1px}
+    .announcement b {color:#ffe078}
+    .content {padding:21px 30px 24px}
+    .welcome {text-align:center}
+    .welcome h2 {font:italic bold 31px/1 Georgia,serif;margin:1px 0 7px;color:var(--vin)}
+    .welcome .intro {max-width:660px;margin:0 auto 15px;font-size:18px}
+    .feature {display:grid;grid-template-columns: minmax(0,1fr) minmax(0,1fr);gap:20px;align-items:start;text-align:left;margin-top:17px}
+    .dinner-illustration {text-align:center;margin:0}
+    .dinner-illustration img {width:100%;max-width:350px;image-rendering:pixelated;border:5px solid #c2a66a;display:block;margin:auto}
+    .dinner-illustration figcaption {font:italic 13px/1.45 Georgia,serif;padding-top:6px}
+    .welcome-note {border:2px solid #baa36a;padding:12px;background:#fffce9}
+    .welcome-note h3 {font:bold 18px/1.1 'Times New Roman',serif;letter-spacing:1px;text-align:center;text-transform:uppercase;margin:0 0 9px;color:var(--vin)}
+    .facts {width:100%;border-collapse:collapse;font:15px/1.3 'Times New Roman',serif}
+    .facts th,.facts td {padding:6px 4px;text-align:left;vertical-align:top;border-bottom:1px dotted #a69a7e}
+    .facts th {width:87px;white-space:nowrap;color:#35522e}
+    .facts tr:last-child th,.facts tr:last-child td {border-bottom:0}
+    .alert {font:bold 17px/1.25 Georgia,serif;text-align:center;color:var(--vin);margin:11px 0 0}
+    .small-ornament {text-align:center;color:#a1282b;font-size:18px;letter-spacing:8px;margin:23px 0 13px}
+    .section {scroll-margin-top:12px;padding:6px 0 22px;border-top:3px double #837553}
+    .section h2 {text-align:center;font:normal 36px/1.08 Georgia,serif;color:var(--vin);margin:20px 0 2px}
+    .section h2 .mark {font-size:21px;color:#557344;vertical-align:middle}
+    .translation {text-align:center;font:italic 13px/1.2 Georgia,serif;color:#6e654d;margin:0 0 18px}
+    .section-lede {text-align:center;max-width:630px;margin:0 auto 16px}
+    .menu-board {width:min(100%,580px);margin:0 auto;text-align:center;padding:15px 15px 16px;background:#fffef4;border:2px solid #786c50;outline:1px solid #786c50;outline-offset:4px}
+    .menu-board .course-label {font:12px/1.3 'Times New Roman',serif;letter-spacing:2px;color:#48623d;margin:6px 0 0;text-transform:uppercase}
+    .menu-board .course-name {font:normal 26px/1.2 Georgia,serif;margin:2px 0 8px}
+    .menu-board .dividing {font-size:13px;color:#a48139;letter-spacing:10px;margin:12px 0}
+    .beverages {font:17px/1.5 Georgia,serif;margin:14px auto 0;text-align:center;max-width:640px}
+    .beverages strong {color:var(--vin)}
+    .time-table {width:100%;max-width:700px;margin:0 auto;border-collapse:collapse;background:#fffdfa;font:17px/1.25 'Times New Roman',serif;border:2px solid #6b6552}
+    .time-table th {background:#395638;color:#fffbdc;text-align:left;font:small-caps bold 16px/1.2 'Times New Roman',serif;letter-spacing:1px;padding:8px 10px;border:1px solid #6b6552}
+    .time-table td {border:1px solid #9b967c;padding:10px 11px;vertical-align:top}
+    .time-table td:first-child {width:105px;white-space:nowrap;font:bold 19px/1.25 'Courier New',monospace;color:#792024}
+    .time-table tr:nth-child(even) td {background:#f3edda}
+    .time-table tr.dinner td {background:#e9dec2;font-weight:bold}
+    .time-table small {display:block;margin-top:3px;color:#655b49;font:12px/1.25 'Times New Roman',serif}
+    .performances {max-width:700px;margin:0 auto;border-top:1px solid #81745a}
+    .performances .row {display:grid;grid-template-columns:135px minmax(0,1fr);gap:9px;padding:8px 3px;border-bottom:1px dotted #988b6f}
+    .performances dt {font:bold 18px/1.25 Georgia,serif;color:var(--vin)}
+    .performances dd {margin:0;font:17px/1.3 Georgia,serif}
+    .performances small {font-style:italic;color:#70664e}
+    .dress {text-align:center;background:#f1e7c9;max-width:640px;margin:auto;border:3px double #95332a;padding:17px 10px}
+    .dress .big {font:bold 42px/1.03 Georgia,serif;color:var(--vin);letter-spacing:1px;margin:6px 0}
+    .dress p {margin:7px 0}
+    .committee {max-width:700px;margin:0 auto}
+    .committee p {margin:0 0 11px}
+    .committee-list {margin:0;padding-left:22px}
+    .committee-list li {padding:3px 0}
+    details {margin-top:14px;border-top:1px dotted #867958;border-bottom:1px dotted #867958;padding:11px 0}
+    summary {cursor:pointer;color:#001fa3;text-decoration:underline;font:bold 16px/1.3 'Times New Roman',serif}
+    details ul {padding-left:24px;margin-bottom:4px}
+    details li {margin:5px 0}
+    .signoff {text-align:center;padding:19px 13px 15px;background:#ede2c4;border-top:3px double #84713f}
+    .signoff .goodnight {font:italic bold 29px/1.2 Georgia,serif;color:var(--vin);margin:4px 0}
+    .signoff p {margin:7px 0;font-size:14px}
+    .signoff button {font:15px 'Times New Roman',serif; padding:4px 9px;border:2px outset #fff;background:#eee5ca;color:#24201d;cursor:pointer}
+    .footer-bar {text-align:center;background:#16331e;color:#f8ebc8;font:12px/1.3 'Times New Roman',serif;letter-spacing:1px;padding:8px}
+    .footer-bar a {color:#d4ecff}
+    @media(max-width:650px) {
+      body {padding:6px 4px 15px;font-size:16px}
+      .page {border-width:3px}
+      .masthead {padding:16px 7px 8px}
+      h1 {font-size:clamp(45px,10.3vw,68px);letter-spacing:-3.7px}
+      h1 span {display:block;font-size:.65em;margin-top:4px;letter-spacing:0}
+      .eyebrow {font-size:11px;letter-spacing:2px}
+      .submast {font-size:12px;letter-spacing:1px}
+      .navigation {padding:7px 3px}
+      .navigation a {padding:4px 9px;font-size:15px}
+      .content {padding:16px 16px 18px}
+      .welcome h2 {font-size:29px}
+      .feature {grid-template-columns:1fr;gap:11px}
+      .dinner-illustration img {width:100%;max-width:355px}
+      .welcome-note {max-width:390px;margin:auto;width:100%}
+      .section h2 {font-size:33px}
+      .performances .row {grid-template-columns:98px 1fr}
+      .dress .big {font-size:37px}
+      .time-table td:first-child {width:88px;font-size:16px}
+      .time-table td {padding:8px 5px}
+    }
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+    @media print {
+      body {background:#fff;padding:0}
+      .page {border:none;box-shadow:none;max-width:100%}
+      .navigation,.signoff button,.footer-bar {display:none}
+      .section {break-inside:avoid}
+      .feature {grid-template-columns:1fr 1fr}
+    }
+  </style>
+</head>
+<body>
+<div class="page" id="toppen">
+<div class="tiny-bar">✳ <span>JULEBORD</span> ✳</div>
+<header class="masthead">
+<div class="holiday-stars"><img alt="" src="stjerne.gif"/><span>✳   ✳   ✳</span><img alt="" src="stjerne.gif"/></div>
+<h1>Julebord</h1>
+<div aria-hidden="true" class="rule">✤</div>
+</header>
+<nav aria-label="Innhold" class="navigation">
+<a href="#mat">Mat</a>
+<a href="#tidsplan">Tidsplan</a>
+<a href="#opplegg">Opplegg</a>
+<a href="#annet">Annet</a>
+</nav>
+<div class="announcement">✳   <b>Dresskode:</b> pent med slipstvang   ✳</div>
+<main class="content">
+<section class="welcome">
+<h2>Vi blir 10 stykker, inkludert Terje og Daniel.</h2>
+<div class="feature">
+<figure class="dinner-illustration">
+<img alt="Illustrasjon av kveldens mat." height="210" src="festmiddag.gif" width="322"/>
+</figure>
+<div class="welcome-note">
+<h3>Dresskode</h3>
+<p class="alert">pent med slipstvang</p>
+</div>
+</div>
+</section>
+<div aria-hidden="true" class="small-ornament">✳ ✳ ✳</div>
+<section class="section" id="mat">
+<h2><span class="mark">✤</span> Det skal serveres <span class="mark">✤</span></h2>
+<div class="menu-board">
+<p class="course-name">Porcetta</p>
+<div aria-hidden="true" class="dividing">✳ ✳ ✳</div>
+<p class="course-name">jumbo-pannacotta</p>
+<div aria-hidden="true" class="dividing">✳ ✳ ✳</div>
+<p class="course-name">chips &amp; rogn</p>
+</div>
+<p class="beverages">I tillegg til velkomstbobler, fnisegløgg og akevitt fra megaflaske.</p>
+</section>
+<section class="section" id="tidsplan">
+<h2><span class="mark">✤</span> Tidsplan <span class="mark">✤</span></h2>
+<table class="time-table">
+<thead><tr><th scope="col">Tid</th><th scope="col">Opplegg</th></tr></thead>
+<tbody>
+<tr><td>16:45</td><td>dørene åpner</td></tr>
+<tr><td>17:00</td><td>mingling og felles panelsamtale</td></tr>
+<tr class="dinner"><td>18:00</td><td>Mat på bordet</td></tr>
+<tr><td>22:00</td><td>annonsering at vi drar</td></tr>
+<tr><td>22:15</td><td>felles transport</td></tr>
+<tr><td>22:30</td><td>ankomst St. Bar</td></tr>
+</tbody>
+</table>
+</section>
+<section class="section" id="opplegg">
+<h2><span class="mark">✤</span> Dette er opplegg <span class="mark">✤</span></h2>
+<dl class="performances">
+<div class="row"><dt>Markus</dt><dd>takk-for-maten-tale</dd></div>
+<div class="row"><dt>Henning</dt><dd>ansvar for lek</dd></div>
+<div class="row"><dt>Edvart</dt><dd>året oppsummert</dd></div>
+<div class="row"><dt>Jon</dt><dd><small>(før middag)</small> overraskelsesmoment</dd></div>
+<div class="row"><dt>Sivert</dt><dd><small>(etter middag)</small> overraskelsesmoment</dd></div>
+<div class="row"><dt>Even</dt><dd>årets damer</dd></div>
+</dl>
+</section>
+<section class="section" id="annet">
+<h2><span class="mark">✤</span> Annet <span class="mark">✤</span></h2>
+<div class="committee">
+<ul class="committee-list">
+<li>Andreas skal vibe-code arrangementsnettside og formidle det ut til de inviterte. Han og Terje har også ansvar for bordbooking på St. Bar.</li>
+<li>Herman har overordnet hovedrett-ansvar</li>
+<li>Even har overordnet dessert-, alkohol- og pengeinnkreving-ansvar</li>
+<li>Terje gir beskjed om opplegget til de respektive (DM, ikke felles)</li>
+<li>Terje har fullstendig ansvar for å droppe det andre julebordet</li>
+<li>Alle må tenke på muligheter for lokasjon</li>
+<li>Vi ser på mulighetsrommet for en harryhandel</li>
+</ul>
+</div>
+</section>
+</main>
+<footer class="signoff">
+<div aria-hidden="true" class="rule">✤</div>
+<p><a href="#toppen">↑</a></p>
+</footer>
+<div class="footer-bar">✳ ✳ ✳</div>
+</div>
+</body>
+</html>
