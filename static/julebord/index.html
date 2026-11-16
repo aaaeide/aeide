@@ -45,6 +45,8 @@
     .dinner-illustration img {width:100%;max-width:350px;image-rendering:pixelated;border:5px solid #c2a66a;display:block;margin:auto}
     .dinner-illustration figcaption {font:italic 13px/1.45 Georgia,serif;padding-top:6px}
     .welcome-note {border:2px solid #baa36a;padding:12px;background:#fffce9}
+    .notes {display:grid;gap:12px}
+    .welcome-note > .alert:first-child {margin-top:0}
     .welcome-note h3 {font:bold 18px/1.1 'Times New Roman',serif;letter-spacing:1px;text-align:center;text-transform:uppercase;margin:0 0 9px;color:var(--vin)}
     .facts {width:100%;border-collapse:collapse;font:15px/1.3 'Times New Roman',serif}
     .facts th,.facts td {padding:6px 4px;text-align:left;vertical-align:top;border-bottom:1px dotted #a69a7e}
@@ -145,9 +147,14 @@
 <figure class="dinner-illustration">
 <img alt="Illustrasjon av kveldens mat." height="210" src="festmiddag.gif" width="322"/>
 </figure>
+<div class="notes">
 <div class="welcome-note">
 <h3>Dresskode</h3>
 <p class="alert">pent med slipstvang</p>
+</div>
+<div class="welcome-note">
+<p class="alert">etter opplegget drar vi til st bar</p>
+</div>
 </div>
 </div>
 </section>
