@@ -83,8 +83,12 @@
     .dress p {margin:7px 0}
     .committee {max-width:700px;margin:0 auto}
     .committee p {margin:0 0 11px}
-    .committee-list {margin:0;padding-left:22px}
-    .committee-list li {padding:3px 0}
+    .committee-list {margin:0;padding-left:0;list-style:none}
+    .committee-list li {padding:3px 0 3px 28px;text-indent:-28px}
+    .committee-list li::before {content:"☐";display:inline-block;width:28px;text-indent:0;font-size:19px;color:#35522e}
+    .committee-list li.done::before {content:"☑";color:var(--vin)}
+    .committee-list li.canceled {color:#70664e}
+    .committee-list li.canceled::before {content:"☒";color:#70664e}
     details {margin-top:14px;border-top:1px dotted #867958;border-bottom:1px dotted #867958;padding:11px 0}
     summary {cursor:pointer;color:#001fa3;text-decoration:underline;font:bold 16px/1.3 'Times New Roman',serif}
     details ul {padding-left:24px;margin-bottom:4px}
@@ -154,7 +158,7 @@
 <a href="#mat">Mat</a>
 <a href="#tidsplan">Tidsplan</a>
 <a href="#opplegg">Opplegg</a>
-<a href="#annet">Annet</a>
+<a href="#annet">Gjøremål</a>
 </nav>
 <div class="announcement">✳   <b>Dresskode:</b> pent med slipstvang   ✳</div>
 <main class="content">
@@ -213,16 +217,17 @@
 </dl>
 </section>
 <section class="section" id="annet">
-<h2><span class="mark">✤</span> Annet <span class="mark">✤</span></h2>
+<h2><span class="mark">✤</span> Komiteens gjøremål <span class="mark">✤</span></h2>
 <div class="committee">
 <ul class="committee-list">
-<li>Andreas skal vibe-code arrangementsnettside og formidle det ut til de inviterte. Han og Terje har også ansvar for bordbooking på St. Bar.</li>
+<li class="done">Andreas skal vibe-code arrangementsnettside og formidle det ut til de inviterte.</li>
+<li class="done">Andreas og Terje har ansvar for bordbooking på St. Bar.</li>
 <li>Herman har overordnet hovedrett-ansvar</li>
 <li>Even har overordnet dessert-, alkohol- og pengeinnkreving-ansvar</li>
-<li>Terje gir beskjed om opplegget til de respektive (DM, ikke felles)</li>
+<li class="done">Terje gir beskjed om opplegget til de respektive (DM, ikke felles)</li>
 <li>Terje har fullstendig ansvar for å droppe det andre julebordet</li>
-<li>Alle må tenke på muligheter for lokasjon</li>
-<li><s>Vi ser på mulighetsrommet for en harryhandel</s></li>
+<li class="done">Alle må tenke på muligheter for lokasjon</li>
+<li class="canceled"><s>Vi ser på mulighetsrommet for en harryhandel</s></li>
 </ul>
 </div>
 </section>
