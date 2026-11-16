@@ -19,6 +19,7 @@
     a:hover {color:#b01924;background:#fff1ae}
     a:focus-visible, summary:focus-visible, button:focus-visible {outline:3px dashed #b01924;outline-offset:3px}
     img {max-width:100%;height:auto}
+    .ticker {border-bottom:2px solid #ddc890;min-height:46px}
     .page {max-width:870px;margin:0 auto;background:var(--papir);border:5px ridge #ddc890;box-shadow:0 0 0 2px #402e24}
     .tiny-bar {background:#16331e;color:#fff7d9;text-align:center;padding:5px 10px;font:12px/1.4 'Times New Roman',serif;letter-spacing:1.5px}
     .tiny-bar span {color:#ffbd66}
@@ -119,7 +120,7 @@
     @media print {
       body {background:#fff;padding:0}
       .page {border:none;box-shadow:none;max-width:100%}
-      .navigation,.signoff button,.footer-bar {display:none}
+      .navigation,.signoff button,.footer-bar,.ticker {display:none}
       .section {break-inside:avoid}
       .feature {grid-template-columns:1fr 1fr}
     }
@@ -127,6 +128,22 @@
 </head>
 <body>
 <div class="page" id="toppen">
+<div class="ticker tradingview-widget-container">
+<div class="tradingview-widget-container__widget"></div>
+<script async src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" type="text/javascript">
+{
+  "symbols": [
+    {"proName": "FOREXCOM:SPXUSD", "title": "S&P 500"},
+    {"proName": "OSL:OSEBX", "title": "Oslo Børs"}
+  ],
+  "showSymbolLogo": false,
+  "isTransparent": false,
+  "displayMode": "regular",
+  "colorTheme": "light",
+  "locale": "no"
+}
+</script>
+</div>
 <div class="tiny-bar">✳ <span>JULEBORD</span> ✳</div>
 <header class="masthead">
 <div class="holiday-stars"><img alt="" src="stjerne.gif"/><span>✳   ✳   ✳</span><img alt="" src="stjerne.gif"/></div>
